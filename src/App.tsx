@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import './App.css'
 
 // Arbitrarily nested data
 const toppingOptions = [
@@ -81,19 +80,39 @@ const toppingOptions = [
     ]
   },
 ]
-type IOption = {
-  options: any,
-  selectedOptions: any,
-  onChange:any
+
+type SelectedOptionsType = {
+  name: string
+  id: string 
+  subOptions: SelectedOptionsType[]
 }
-type ICheckbox = {
-  selected: any,
-   label:string,
-    onChange:any
+type SelectedOption =  {
+  [key: string] : SelectedOption
+}
+interface IOption {
+  options: SelectedOptionsType[]
+  selectedOptions: SelectedOption,
+  onChange:(value: SelectedOption) => void
+}
+interface ICheckbox  {
+  selected: SelectedOption
+  label:string
+  onChange:(value: boolean) => void
+}
+
+const Checkbox = (props:ICheckbox) => {
+  const { selected, label, onChange } =props;
+  const name = `name${Math.floor(Math.random()*100)}`
+  return (
+    <div>
+       <input type="checkbox" id={`${Math.floor(Math.random()*100)}`} name={name} onClick={() => onChange(!selected)}/>
+       <label htmlFor={name}> {label}</label><br/>
+    </div>
+  )
 }
 
 const OptionsList = (props:IOption) => {
-  const { options, selectedOptions, onChange }=props
+  const { options, selectedOptions, onChange }=props;
    const handleCheckboxClicked = (selectedOptionId: string) => {
      // is currently selected
      if(selectedOptions[selectedOptionId]){
@@ -107,7 +126,7 @@ const OptionsList = (props:IOption) => {
      onChange(selectedOptions) 
    }
    
-   const handleSubOptionsListChange = (optionId:string, subSelections:any) => {
+   const handleSubOptionsListChange = (optionId:string, subSelections:SelectedOption) => {
      // add sub selections to current optionId
      selectedOptions[optionId] = subSelections;
      // call onChange function given by parent
@@ -116,8 +135,8 @@ const OptionsList = (props:IOption) => {
    
    return (
      <div>
-       {options.map((option:any) => (
-         <ul>
+       {options.map((option:SelectedOptionsType, index: number) => (
+         <ul key={`${option.id} + ${index}`}>
            <Checkbox 
              selected={selectedOptions[option.id]} 
              label={option.name} 
@@ -128,7 +147,7 @@ const OptionsList = (props:IOption) => {
              <OptionsList
                options={option.subOptions}
                selectedOptions={selectedOptions[option.id]} 
-               onChange={(subSelections:any) => handleSubOptionsListChange(option.id, subSelections)}
+               onChange={(subSelections:SelectedOption) => handleSubOptionsListChange(option.id, subSelections)}
               />
            }
          </ul>
@@ -137,28 +156,16 @@ const OptionsList = (props:IOption) => {
    )
  }
  
- 
- // Dumb checkbox component, completly controlled by parent
- const Checkbox = (props:ICheckbox) => {
-   const { selected, label, onChange } =props
-   return (
-     <div>
-        <input type="checkbox" id={`${Math.floor(Math.random()*100)}`} name="vehicle1" onClick={() => onChange(!selected)}/>
-        <label htmlFor="vehicle1"> {label}</label><br/>
-     </div>
-   )
- }
 // Root component -> Manages all app state
 
 const App = () => {
   const [state, setState] = useState({ selectedOptions: {}})
-  console.log(state)
   return (
     <div>
       <h1>Toppings</h1>
       <OptionsList 
         options={toppingOptions} 
-        onChange={(selectedOptions:any) => setState({selectedOptions})}
+        onChange={(selectedOptions:SelectedOption) => setState({selectedOptions})}
         selectedOptions={state.selectedOptions} 
       />
     </div>

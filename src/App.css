@@ -1,145 +1,38 @@
-body {
-  font-size: 18px;
-  font-family: 'Roboto', sans-serif;
-  background: white;
+.App {
+  text-align: center;
 }
 
-.alertElement {
-  color: white;
-  position: fixed;
-  background-color: #21252E;
-  right: 10px;
-  bottom: 10px;
-  height: 300px;
-  width: 300px;
-  border-radius: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.4);
-  visibility: hidden;
-  overflow: scroll;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
-h2 {
-    margin: 0px;
-    margin-bottom: 10px;
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
   }
-.container {
-    width: 98vw;
-  height: 98vh;
-    display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.wrapper {
-  box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.4);
-  background: #4A627A;
-  padding: 20px;
-  margin: 50px;
-  min-width: 320px;
-  min-height: 500px;
-  transition: 1s;
-  overflow: scroll;
-  width: 70%;
-  height: 70vw;
-  max-width: 80vh;
-  max-height: 80vh;
-  position: relative;
-  border-radius: 10px;
-}
-  
-  .actual {
-    position: fixed;
-    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.4);
-  
-  width: 50px;
-  height: 50px;
-  box-sizing: border-box;
-  background: white;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 100;
-  transition: 0.5s;
-  }
-  .data-structure-button {
-    position: absolute;
-    top: 16px;
-    right: 65px;
-    
-  }
-  .data-structure {
-    position: absolute;
-    color: white;
-    padding: 10px;
-    background-color: #21252E;
-    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.4);
-    top: 0px;
-    right: 20px;
-    border-radius: 10px;
-    
-  }
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-  .actual-debug {
-    position: fixed;
-    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.4);
-  
-    width: 50px;
-    height: 50px;
-    box-sizing: border-box;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 100;
-    transition: 0.5s;
-  }
-  .active-debug-button {
-    transform: translateX(50px) rotate(-45deg);
-  }
-  .is-debugging {
-    background-color: #80cbc4;
-  }
-  .debug-button {
-    position: absolute;
-    top: 80px;
-    right: 65px;
-    
-    
-    
-  }
-  
-  .active-button {
-    transform: translate(30px, -30px) rotate(30deg); /* Equal to rotateZ(45deg) */
-  }
-  
-  .firstUL{
-    transform: translateX(-90px);
-  }
-  h1{
-    color: white;
-  }
-  .__label {
-    font-size: 24px;
-    font-weight: 700;
-    color: white;
-  }
-  .__icon {
-    width: 50px;
-    cursor: pointer;
-    color: white;
-    
-  }
-  .checkbox {
-    display: flex;
-    align-items: center;
-    transform: translate(60px);
+.App-link {
+  color: #61dafb;
+}
 
-    margin: 10px;
-   
-   
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
